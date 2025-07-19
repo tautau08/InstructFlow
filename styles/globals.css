@@ -1,0 +1,465 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+/* 
+  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+*/
+
+
+/* ---------- MAIN BACKGROUND LAYERS ---------- */
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+}
+
+.main:before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.main:after {
+  content: "";
+  background-image: url("/assets/images/grid.svg");
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0.4;
+  filter: invert(1);
+}
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+.gradient {
+  z-index: 3;
+  width: 100%;
+  max-width: 640px;
+  background-image: radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 1) 0px, transparent 0%),
+    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  position: absolute;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+}
+
+.crimson_blaze {
+  background-image: linear-gradient(to right, #ff416c, #ff4b2b);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+.cotton_candy_dream {
+  background-image: linear-gradient(to right, #a1c4fd, #c2e9fb, #d4a5ff, #fbc2eb);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+.midnight_prism {
+  background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.royal_fuchsia {
+  background-image: linear-gradient(to right, #7f00ff, #e100ff);
+  background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  color: transparent;
+  -webkit-text-fill-color: transparent; /* Safari */
+}
+
+
+.dark_grape {
+  background-image: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+ background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.frostbyte {
+  background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+ background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.lava_burst {
+  background-image: linear-gradient(to right, #ff512f, #dd2476);
+ background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.cyber_shock {
+  background-image: linear-gradient(to right, #fc466b, #3f5efb);
+background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.toxic_green {
+  background-image: linear-gradient(to right, #00b09b, #96c93d);
+  background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.noir_indigo {
+  background-image: linear-gradient(to right, #1a1a2e, #16213e, #0f3460);
+ background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ---------- RESPONSIVE PADDING FIX ---------- */
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  }
+}
+
+/* ---------- APP & BUTTON STYLES ---------- */
+.app {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .app {
+    padding: 0 4rem;
+  }
+}
+
+.black_btn,
+.outline_btn {
+  border-radius: 9999px;
+  padding: 0.375rem 1.25rem;
+  font-size: 0.875rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.black_btn {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+}
+
+.black_btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.outline_btn {
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+}
+
+.outline_btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+.head_text {
+  margin-top: 1.25rem;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: black;
+}
+
+@media (min-width: 640px) {
+  .head_text {
+    font-size: 3.75rem;
+  }
+}
+
+.orange_gradient {
+  background-image: linear-gradient(to right, #f59e0b, #ea580c, #facc15);
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.green_gradient {
+  background-image: linear-gradient(to right, #4ade80, #22c55e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue_gradient {
+  background-image: linear-gradient(to right, #2563eb, #06b6d4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.desc {
+  margin-top: 1.25rem;
+  font-size: 1.125rem;
+  color: #4b5563;
+  max-width: 42rem;
+}
+
+@media (min-width: 640px) {
+  .desc {
+    font-size: 1.25rem;
+  }
+}
+
+/* ---------- INPUTS ---------- */
+.search_input {
+  display: block;
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  padding: 0.625rem 3rem 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: 'Satoshi', sans-serif;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.search_input:focus {
+  outline: none;
+  border-color: black;
+  box-shadow: none;
+}
+
+.form_input,
+.form_textarea {
+  width: 100%;
+  display: flex;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  outline: none;
+}
+
+.form_textarea {
+  height: 200px;
+}
+
+/* ---------- FEED ---------- */
+.feed {
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 36rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ---------- LAYOUTS ---------- */
+.prompt_layout {
+  padding: 2rem 0;
+}
+
+@media (min-width: 640px) {
+  .prompt_layout {
+    column-count: 2;
+    column-gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .prompt_layout {
+    column-count: 3;
+  }
+}
+
+/* ---------- LOGO & NAV ---------- */
+.logo_text {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .logo_text {
+    display: inline-block;
+    font-family:'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #111827;
+    letter-spacing: 0.025rem;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.75rem;
+  padding: 1.25rem;
+   background-color: rgba(255, 255, 255, 0.40);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  min-width: 180px;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown_link {
+  font-size: 0.875rem;
+  font-family: 'Poppins', sans-serif;
+  color: #6b7280;
+  font-weight: 550;
+  transition: color 0.2s;
+}
+
+.dropdown_link:hover {
+  color: #111827;
+}
+
+/* ---------- COMPONENTS ---------- */
+.prompt_card {
+  flex: 1;
+  break-inside: avoid;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background-color: rgba(255, 255, 255, 0.2);
+  background-clip: padding-box;
+  padding: 1.5rem;
+  padding-bottom: 1rem;
+  backdrop-filter: blur(4px);
+  width: 100%;
+  max-width: 360px;
+}
+
+.copy_btn {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 10px -50px 94px 0 rgba(199, 199, 199, 0.2);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* ---------- FLEX HELPERS ---------- */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.blue_slate_gradient_bg {
+  background-image: linear-gradient(to right, #a8c0d9, #cbd5e1);
+}
+
+.sage_mint_gradient_bg {
+  background-image: linear-gradient(to right, #cdd9c3, #e4efe7);
+}
+
+.lavender_gray_gradient_bg {
+  background-image: linear-gradient(to right, #c7c5dc, #e8e7ee);
+}
+
+.dusty_rose_gradient_bg {
+  background-image: linear-gradient(to right, #d8a7b1, #e8d3d6);
+}
+
+.sandstone_gradient_bg {
+  background-image: linear-gradient(to right, #d6c6b8, #efe9e4);
+}
+
+.moss_charcoal_gradient_bg {
+  background-image: linear-gradient(to right, #7d8d87, #b4bdb9);
+}
+
+.powder_peach_gradient_bg {
+  background-image: linear-gradient(to right, #f2d6c3, #f7ebe5);
+}
+
+.fog_lilac_gradient_bg {
+  background-image: linear-gradient(to right, #b7b9c8, #dcdde5);
+}
+.sunset_blush {
+  background-image: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
