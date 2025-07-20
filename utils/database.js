@@ -12,10 +12,13 @@ export const connectToDB =async ()=>{
 
     try{
         await mongoose.connect(process.env.MONGODB_URI,{
-        dbName:"share_prompt",
-        useNewUrlParser: true,
-        useUnifiedTopology:true,
+        dbName:"instructflow",
+        
+        
         })
+
+         isConnected = true;
+        console.log('MongoDB connected to instructflow database')
     } catch(error){
         console.log(error);
     }
