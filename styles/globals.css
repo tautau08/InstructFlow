@@ -373,20 +373,32 @@ background-clip: text;
 }
 
 /* ---------- LAYOUTS ---------- */
+/* Replace the existing .prompt_layout with this: */
 .prompt_layout {
   padding: 2rem 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr; /* Single column on mobile */
 }
 
 @media (min-width: 640px) {
   .prompt_layout {
-    column-count: 2;
-    column-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* Cards will be at least 350px wide, and grow to fill space */
+  }
+}
+
+@media (min-width: 1024px) {
+  .prompt_layout {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    /* Larger cards on bigger screens */
   }
 }
 
 @media (min-width: 1280px) {
   .prompt_layout {
-    column-count: 3;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    /* Even larger cards on extra large screens */
   }
 }
 
@@ -454,7 +466,7 @@ label {
   padding-bottom: 1rem;
   backdrop-filter: blur(4px);
   width: 100%;
-  max-width: 360px;
+  
 }
 
 .copy_btn {
