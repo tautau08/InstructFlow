@@ -1,14 +1,16 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect, useRef } from "react" // ✅ ADDED useRef import
+import { useState, useEffect, useRef } from "react"
 import { signIn, signOut, useSession, getProviders } from "next-auth/react"
+import { useRouter } from "next/navigation" // ✅ Add router import
 
 const Nav = () => {
+    const router = useRouter(); // ✅ Add router
     const { data: session } = useSession();
     const [providers, setproviders] = useState(null)
-    const [toggleDropped, settoggleDropped] = useState(false) // ✅ MOVED before useEffect
-    const dropdownRef = useRef(null); // ✅ ADDED dropdownRef declaration
+    const [toggleDropped, settoggleDropped] = useState(false)
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
         const setUpProviders = async () => {
@@ -25,16 +27,20 @@ const Nav = () => {
             }
         };
 
-        // Add event listener when dropdown is open
         if (toggleDropped) {
             document.addEventListener('mousedown', handleClickOutside);
         }
 
-        // Cleanup event listener
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [toggleDropped]);
+
+    // ✅ Create handleSignOut function
+    const handleSignOut = async () => {
+        await signOut({ redirect: false }); // Prevent default redirect
+        router.push("/"); // Manually redirect to home
+    };
 
     return (
         <nav className="flex-between w-full mb-16 pt-3">
@@ -56,7 +62,8 @@ const Nav = () => {
                             Create Post
                         </Link>
                         
-                        <button type="button" onClick={signOut} className="outline_btn">
+                        {/* ✅ Updated desktop sign out */}
+                        <button type="button" onClick={handleSignOut} className="outline_btn">
                             Sign Out
                         </button>
                         
@@ -86,7 +93,7 @@ const Nav = () => {
             {/*mobile navigation*/}
             <div className="sm:hidden flex relative">
                 {session?.user ? (
-                    <div ref={dropdownRef}> {/* ✅ ADDED ref={dropdownRef} */}
+                    <div ref={dropdownRef}>
                         <Image
                             src={session?.user.image}
                             width={37}
@@ -96,7 +103,7 @@ const Nav = () => {
                             onClick={() => settoggleDropped((prev) => !prev)}
                         />
 
-                        {toggleDropped && ( // ✅ CHANGED from ternary to logical AND
+                        {toggleDropped && (
                             <div className="dropdown">
                                 <Link 
                                     href="/profile"
@@ -109,13 +116,14 @@ const Nav = () => {
                                     href="/create_prompt"
                                     className="dropdown_link"
                                     onClick={() => settoggleDropped(false)}>
-                                    Create Prompt {/* ✅ FIXED typo: "Promt" to "Prompt" */}
+                                    Create Prompt 
                                 </Link>
 
+                                {/* ✅ Updated mobile sign out */}
                                 <button 
                                     type="button" 
-                                    onClick={() => { // ✅ ADDED settoggleDropped to signOut
-                                        signOut();
+                                    onClick={() => {
+                                        handleSignOut(); // Use new function
                                         settoggleDropped(false);
                                     }} 
                                     className="black_btn">

@@ -59,8 +59,8 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
                 : "/assets/icons/copy.svg"
             }
             alt={copied === post.prompt ? "tick_icon" : "copy_icon"}
-            width={12}
-            height={12}
+            width={20}
+            height={20}
           />
         </div>
       </div>
@@ -74,19 +74,19 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
       </p>
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
-        <div className='mt-5 flex-center gap-4 border-t border-gray-100 pt-3'>
-          <p
-            className='font-inter text-sm green_gradient cursor-pointer'
+        <div className='mt-5 flex justify-around border-t border-gray-100 pt-3'>
+          <div><p
+            className='font-poppins text-sm text-blue-600 cursor-pointer '
             onClick={handleEdit}
           >
             Edit
-          </p>
-          <p
-            className='font-inter text-sm orange_gradient cursor-pointer'
+          </p></div>
+         <div> <p
+            className='font-poppins text-sm text-red-600 cursor-pointer'
             onClick={handleDelete}
           >
             Delete
-          </p>
+          </p></div>
         </div>
       )}
     </div>
