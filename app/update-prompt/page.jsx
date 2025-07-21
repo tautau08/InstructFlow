@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
-const UpdatePrompt = () => {
+// ✅ Create a separate component for the content that uses useSearchParams
+const UpdatePromptContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
 
-  const [post, setPost] = useState({ prompt: "", tag: "", });
+  const [post, setPost] = useState({ prompt: "", tag: "" });
   const [submitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -40,6 +41,9 @@ const UpdatePrompt = () => {
           prompt: post.prompt,
           tag: post.tag,
         }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       if (response.ok) {
@@ -60,6 +64,31 @@ const UpdatePrompt = () => {
       submitting={submitting}
       handleSubmit={updatePrompt}
     />
+  );
+};
+
+// ✅ Loading component
+const UpdatePromptLoading = () => {
+  return (
+    <div className="w-full max-w-full flex-start flex-col">
+      <div className="animate-pulse">
+        <div className="h-12 bg-gray-200 rounded-md mb-4 w-1/3"></div>
+        <div className="h-4 bg-gray-200 rounded-md mb-6 w-2/3"></div>
+        <div className="space-y-4">
+          <div className="h-32 bg-gray-200 rounded-md"></div>
+          <div className="h-10 bg-gray-200 rounded-md"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ✅ Main component wrapped with Suspense
+const UpdatePrompt = () => {
+  return (
+    <Suspense fallback={<UpdatePromptLoading />}>
+      <UpdatePromptContent />
+    </Suspense>
   );
 };
 
